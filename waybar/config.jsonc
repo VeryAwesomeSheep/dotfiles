@@ -1,0 +1,51 @@
+// -*- mode: jsonc -*-
+{
+    /* General bar settings */
+    "layer": "top",  // Waybar at top layer
+    "position": "top",  // Waybar position (top|bottom|left|right)
+    //"height": 60,       // Waybar height (to be removed for auto height)
+    //"width": 1280,   // Waybar width
+    "spacing": 10,       // Gaps between modules (4px)
+    "reload_style_on_change": true,
+
+    /* Include config file with modules configurations */
+    "include": [
+        "$HOME/.config/waybar/modules.jsonc"
+    ],
+
+    /* Order of modules in sections */
+    "modules-left": [
+        "custom/launcher",
+        "clock",
+        "clock#date",
+        "custom/weather"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "custom/update",
+        "group/system",
+        "tray",
+        "pulseaudio",
+        "custom/notifications"
+    ],
+
+    /* Groups */
+    "group/system": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            //"children-class": "not-power",
+            "transition-left-to-right": false,
+            "click-to-reveal": false
+        },
+        "modules": [
+            "custom/icon#expand",
+            "custom/btop",
+            "idle_inhibitor",
+            "bluetooth",
+            "network"
+        ]
+    }
+}

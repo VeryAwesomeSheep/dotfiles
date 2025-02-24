@@ -1,0 +1,227 @@
+/* Modules configurations */
+{
+    /* Audio */
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{icon}   {volume}% {format_source}",
+        "format-bluetooth-muted": "   {volume}% {format_source}",
+        "format-muted": "   {volume}% {format_source}",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "format-source": "",
+        "format-source-muted": "",
+        "tooltip": true,
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-middle": "fooyin&",
+        "on-click-right": "pavucontrol"
+    },
+
+    /* Batteries */
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+
+    /* Bluetooth */
+    "bluetooth": {
+        "format-on": "<span color=\"#00FF00\"></span>",
+        "format-connected": "<span color=\"#009EDB\"></span>",
+        "format-disabled": "<span color=\"#EE0000\"></span>",
+        "format-off": "<span color=\"#EE0000\"></span>",
+        "format-no-controller": "<span color=\"#EE0000\"></span>",
+        "tooltip-format-on": "Bluetooth ready",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": " {device_alias}\n {device_battery_percentage}%",
+        "tooltip-format-disabled": "Bluetooth disabled",
+        "tooltip-format-off": "Bluetooth off",
+        "tooltip-format-no-controller": "No Bluetooth controller",
+        "on-click": "blueman-manager"
+    },
+
+    /* Clock */
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+    "clock#date": {
+        "format": "{:%A %d.%m}",
+        "tooltip": true,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "left",
+                    "on-scroll"     : 1,
+                    "format": {
+                            "months":     "<span color='#ffead3'><b>{}</b></span>",
+                            "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                            "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                            "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                            "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                            }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-middle": "shift_reset",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+
+    /* Hyprland */
+    "hyprland/workspaces": {
+        "active-only": true,
+        "format": "{icon}",
+        "format-icons": {
+            "empty": "", // basically persitent ones
+            "default": "", // not empty, but not visible or in focus
+            "visible": "", // not in focus but visible ie. other monitor
+            "active": "", // in focus
+            "urgent": ""
+        },
+        "persistent-workspaces": {
+            "DP-1": [ 1, 2, 3, 4 ], // workspaces 1-4 shown on DP-1
+            "DP-2": [ 5, 6, 7, 8 ] // workspaces 5-8 shown on DP-2
+        }
+    },
+    "hyprland/window": {
+        "format": "{class}",
+        "max-length": 25
+    },
+
+    /* Idle inhibitor */
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "<span color=\"#00FF00\"></span>",
+            "deactivated": "<span color=\"#f54242\"></span>"
+        },
+        "timeout": 30.5
+    },
+
+    /* MPRIS */
+    "mpris": {
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": "{status_icon} {artist} - {title}",
+        "max-length": 25,
+        "tooltip": true,
+        "tooltip-format": "{artist}\n{title}\n{album}\n{length}",
+        "player-icons": {
+            "default": "",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": ""
+        }
+        //"ignored-players": ["firefox"]
+    },
+
+    /* Network */
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "",
+        "tooltip-format-wifi": " {essid} - {signalStrength}%",
+        "format-ethernet": "",
+        "tooltip-format-ethernet": " {ifname}",
+        "format-linked": "",
+        "tooltip-format-linked": " {ifname}",
+        "format-disconnected": "",
+        "tooltip-format-disconnected": " {ifname}"
+    },
+
+    /* Tray */
+    "tray": {
+        "show-passive-items": false,
+        "spacing": 4
+    },
+
+    /* Custom */
+    // App launcher
+    "custom/launcher": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "tofi-drun --drun-launch=true",
+        "interval": "once"
+    },
+    // Weather from wttr.in
+    "custom/weather": {
+        "format": "{}",
+        "exec": "$HOME/.config/scripts/wttrin.sh --waybar",
+        "return-type": "json",
+        "interval": 3600,
+        "tooltip": true,
+        "on-click": "$HOME/.config/scripts/wttrin.sh --waybar"
+    },
+    // System updates
+    "custom/update": {
+        "format": "{}",
+        "hide-empty-text": true,
+        "exec": "$HOME/.config/scripts/updates.sh",
+        "interval": 3600,
+        "tooltip": false,
+        "on-click-right": "kitty -e yay; pkill -SIGRTMIN+8 waybar",
+        "signal": 8
+    },
+    // btop
+    "custom/btop": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "btop",
+        "on-click": "kitty -e btop"
+    },
+    // Notifications
+    "custom/notifications": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    /* Decorational modules */
+    // Separator
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    },
+    // First icon in group drawer - expand
+    "custom/icon#expand": {
+        "format": "",
+        "tooltip": false
+    },
+}

@@ -1,0 +1,143 @@
+/* General */
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 10px;
+}
+
+/* Bar */
+window#waybar {
+    background: rgba(40, 40, 40, 1);
+    /*background: transparent;*/
+    border-radius: 8px;
+}
+
+/* Tooltip */
+tooltip {
+    background: rgba(40, 40, 40, 0.9);
+    border-radius: 8px;
+    border-width: 0px;
+}
+tooltip label {
+    color: wheat;
+}
+
+/* Sections */
+.modules-left,
+.modules-center,
+.modules-right {
+    background: rgba(40, 40, 40, 0.9);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    border-color: wheat;
+    border-style: none;
+    border-width: 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.modules-left {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.modules-right {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+/* Modules */
+#workspaces,
+#idle_inhibitor,
+#clock,
+#backlight,
+#backlight-slider,
+#network,
+#bluetooth,
+#pulseaudio,
+#pulseaudio-slider,
+#battery,
+#cpu,
+#disk,
+#keyboard-state,
+#mode,
+#mpris,
+#language,
+#memory,
+#tray,
+#custom-separator,
+#custom-launcher,
+#custom-weather,
+#custom-update,
+#custom-btop,
+#custom-notifications,
+#custom-icon {
+    color: wheat;
+    background-color: transparent;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+#custom-separator {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/* Blinking notification icon */
+#custom-notifications.notification,
+#custom-notifications.dnd-notification,
+#custom-notifications.inhibited-notification,
+#custom-notifications.dnd-inhibited-notification {
+    animation: blink 1s infinite;
+    color: red;
+}
+
+/* Workspace buttons */
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    color: wheat;
+    border-radius: 8px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+#workspaces button.empty {
+    color: grey;
+}
+
+/* Blinking urgent workspace */
+#workspaces button.urgent {
+    color: red;
+    animation: blink 1s infinite;
+}
+
+/* White hovered workspace */
+#workspaces button:hover {
+    color: #ffffe7;
+    background: inherit;
+}
+
+/* Tray menu separator height */
+#tray menu separator {
+    min-height: 0px;
+}
+
+/* Animations */
+@keyframes blink {
+    to {
+        color: wheat;
+    }
+}

@@ -1,0 +1,26 @@
+# https://github.com/philj56/tofi/blob/master/doc/config
+
+# Font
+font = JetBrainsMono Nerd Font
+font-size = 30
+
+# Text style
+selection-color = #f5deb3
+selection-match-color = #ffffe7
+
+# Text layout
+prompt-text = "Run: "
+num-results = 5
+result-spacing = 15
+
+# Window theming
+width = 100%
+height = 100%
+background-color = #282828aa
+outline-width = 0
+border-width = 0
+padding-left = 35%
+padding-top = 35%
+
+# Behaviour
+terminal = kitty

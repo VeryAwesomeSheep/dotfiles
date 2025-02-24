@@ -1,0 +1,11 @@
+# Close input on singular ESC press
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+
+# Toggle exec file
+[[manager.prepend_keymap]]
+on   = [ "*"]
+run  = 'shell -- chmod u$( [[ -x "$0" ]] && echo -x || echo +x ) "$0"'
+desc = "Toggle executable"
