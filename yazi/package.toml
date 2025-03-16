@@ -1,0 +1,12 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "2bf70d8"
+hash = "dd97eede8e20e59cd2604e8006e470e2"
+
+[[plugin.deps]]
+use = "stelcodes/bunny"
+rev = "49bd059"
+hash = "2adf8bfe95004e63da0201dc0c2f365"
+
+[flavor]
+deps = []

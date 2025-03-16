@@ -9,3 +9,16 @@ desc = "Cancel input"
 on   = [ "*"]
 run  = 'shell -- chmod u$( [[ -x "$0" ]] && echo -x || echo +x ) "$0"'
 desc = "Toggle executable"
+
+# mount.yazi plugin
+[[manager.prepend_keymap]]
+desc = "Open mount menu"
+on  = "M"
+run = "plugin mount"
+
+# bunny.yazi plugin
+[[manager.prepend_keymap]]
+desc = "Start bookmark menu"
+on = "b"
+run = "plugin bunny"
+

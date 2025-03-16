@@ -18,7 +18,9 @@
         "custom/launcher",
         "clock",
         "clock#date",
-        "custom/weather"
+        "custom/weather",
+        "mpris"
+        //"hyprland/window"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -28,6 +30,8 @@
         "group/system",
         "tray",
         "pulseaudio",
+        //"battery", // laptop
+        //"battery#bat2", // laptop
         "custom/notifications"
     ],
 
@@ -42,6 +46,7 @@
         },
         "modules": [
             "custom/icon#expand",
+            "custom/hyprsunset",
             "custom/btop",
             "idle_inhibitor",
             "bluetooth",
@@ -49,3 +54,4 @@
         ]
     }
 }
+

@@ -20,7 +20,7 @@
         "format-source-muted": "",
         "tooltip": true,
         "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "on-click-middle": "fooyin&",
+        "on-click-middle": "kitty -e ncmpcpp",
         "on-click-right": "pavucontrol"
     },
 
@@ -125,7 +125,7 @@
     "mpris": {
         "format": "{player_icon} {artist} - {title}",
         "format-paused": "{status_icon} {artist} - {title}",
-        "max-length": 25,
+        "max-length": 50,
         "tooltip": true,
         "tooltip-format": "{artist}\n{title}\n{album}\n{length}",
         "player-icons": {
@@ -191,6 +191,13 @@
         "tooltip-format": "btop",
         "on-click": "kitty -e btop"
     },
+    // hyprsunset
+    "custom/hyprsunset": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Toggle hyprsunset",
+        "on-click": "$HOME/.config/scripts/hyprsunset.sh"
+    },
     // Notifications
     "custom/notifications": {
         "tooltip": false,
@@ -225,3 +232,4 @@
         "tooltip": false
     },
 }
+
