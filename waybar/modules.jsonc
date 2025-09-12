@@ -4,13 +4,13 @@
     "pulseaudio": {
         "scroll-step": 1,
         "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{icon}   {volume}% {format_source}",
+        "format-bluetooth": "{icon}  {volume}% {format_source}",
         "format-bluetooth-muted": "   {volume}% {format_source}",
         "format-muted": "   {volume}% {format_source}",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
@@ -143,8 +143,8 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "",
         "tooltip-format-wifi": " {essid} - {signalStrength}%",
-        "format-ethernet": "",
-        "tooltip-format-ethernet": " {ifname}",
+        "format-ethernet": "󰈀",
+        "tooltip-format-ethernet": "󰈀 {ifname}",
         "format-linked": "",
         "tooltip-format-linked": " {ifname}",
         "format-disconnected": "",
@@ -158,13 +158,6 @@
     },
 
     /* Custom */
-    // App launcher
-    "custom/launcher": {
-        "format": "󰣇",
-        "tooltip": false,
-        "on-click": "tofi-drun --drun-launch=true",
-        "interval": "once"
-    },
     // Weather from wttr.in
     "custom/weather": {
         "format": "{}",
@@ -191,26 +184,19 @@
         "tooltip-format": "btop",
         "on-click": "kitty -e btop"
     },
-    // hyprsunset
-    "custom/hyprsunset": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "Toggle hyprsunset",
-        "on-click": "$HOME/.config/scripts/hyprsunset.sh"
-    },
     // Notifications
     "custom/notifications": {
         "tooltip": false,
         "format": "{icon}",
         "format-icons": {
-            "notification": "",
-            "none": "",
-            "dnd-notification": "",
-            "dnd-none": "",
-            "inhibited-notification": "",
-            "inhibited-none": "",
-            "dnd-inhibited-notification": "",
-            "dnd-inhibited-none": ""
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
         },
         "return-type": "json",
         "exec-if": "which swaync-client",

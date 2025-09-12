@@ -9,7 +9,7 @@ DEST_DIR="."
 
 ITEMS=(
   "clipse/config.json"
-  "hyrp"
+  "hypr"
   "kitty/kitty.conf" # change to full dir when theme ready
   "mpd/mpd.conf"
   "mpDris2"
@@ -20,11 +20,15 @@ ITEMS=(
   "systemd/user/hyprsunset.service"
   "systemd/user/hyprsunset.timer"
   "tofi"
-  "waybar/config.json"
-  "waybar/modules.json"
+  "waybar/config.jsonc"
+  "waybar/modules.jsonc"
   "waybar/style.css"
   "xdg-desktop-portal"
-  "yazi"
+  "xdg-desktop-portal-termfilechooser"
+  "yazi/init.lua"
+  "yazi/keymap.toml"
+  "yazi/package.toml"
+  "yazi/yazi.toml"
   "zed/keymap.json"
   "zed/settings.json"
 )

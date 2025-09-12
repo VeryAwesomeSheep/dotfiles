@@ -4,21 +4,49 @@ on   = "<Esc>"
 run  = "close"
 desc = "Cancel input"
 
+# Remap fzf to F
+[[mgr.prepend_keymap]]
+on = "F"
+run = "plugin fzf"
+desc = "Jump to a file/directory via fzf"
+
+# Remap filter to f
+[[mgr.prepend_keymap]]
+on = "f"
+run = "filter --smart"
+desc = "Filter files"
+
 # Toggle exec file
-[[manager.prepend_keymap]]
-on   = [ "*"]
+[[mgr.prepend_keymap]]
+on   = ["*"]
 run  = 'shell -- chmod u$( [[ -x "$0" ]] && echo -x || echo +x ) "$0"'
 desc = "Toggle executable"
 
 # mount.yazi plugin
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 desc = "Open mount menu"
 on  = "M"
 run = "plugin mount"
 
 # bunny.yazi plugin
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 desc = "Start bookmark menu"
 on = "b"
 run = "plugin bunny"
+
+# compress plugin
+[[mgr.prepend_keymap]]
+on   = [ "C", "a" ]
+run  = "plugin compress '7z'"
+desc = "Archive selected files"
+
+[[mgr.prepend_keymap]]
+on   = [ "C", "p" ]
+run  = "plugin compress '-p 7z'"
+desc = "Archive selected files (passowrd)"
+
+[[mgr.prepend_keymap]]
+on   = [ "C", "h" ]
+run  = "plugin compress '-ph 7z'"
+desc = "Archive selected files (passowrd + headers)"
 

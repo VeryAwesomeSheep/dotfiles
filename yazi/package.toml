@@ -1,12 +1,17 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "2bf70d8"
-hash = "dd97eede8e20e59cd2604e8006e470e2"
+rev = "e95c7b3"
+hash = "e1de3054c0d1a2d8dc6f007eadc0fa31"
 
 [[plugin.deps]]
 use = "stelcodes/bunny"
-rev = "49bd059"
-hash = "2adf8bfe95004e63da0201dc0c2f365"
+rev = "bd8a767"
+hash = "5dded0f0f40142f99dda23aedd76b2bf"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "c264639"
+hash = "e17c11b605d989568a1d1741ca17c584"
 
 [flavor]
 deps = []

@@ -15,7 +15,6 @@
 
     /* Order of modules in sections */
     "modules-left": [
-        "custom/launcher",
         "clock",
         "clock#date",
         "custom/weather",
@@ -46,7 +45,6 @@
         },
         "modules": [
             "custom/icon#expand",
-            "custom/hyprsunset",
             "custom/btop",
             "idle_inhibitor",
             "bluetooth",

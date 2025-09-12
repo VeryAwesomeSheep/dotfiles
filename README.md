@@ -1,11 +1,14 @@
 # dotfiles
 
-distro: [Arch Linux](https://archlinux.org/)<br>
+distro: [Arch Linux](https://archlinux.org/)<br><br>
+
 compositor: [Hyprland](https://github.com/hyprwm/Hyprland)<br>
 lock screen: [hyprlock](https://github.com/hyprwm/hyprlock)<br>
 bar: [waybar](https://github.com/Alexays/Waybar)<br>
 notifications: [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter)<br>
-launcher: [tofi](https://github.com/philj56/tofi)<br>
+launcher: [tofi](https://github.com/philj56/tofi)<br><br>
+
+browser: [firefox](https://www.mozilla.org/en-US/firefox)<br>
 terminal: [kitty](https://github.com/kovidgoyal/kitty)<br>
 editor: [zed](https://zed.dev) / [neovim](https://neovim.io)<br>
 music: [mpd](https://www.musicpd.org/) + [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)<br>

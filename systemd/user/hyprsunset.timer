@@ -2,6 +2,7 @@
 Description=Run hyprsunset.service every 10 minutes
 
 [Timer]
+OnStartupSec=20seconds
 OnCalendar=*:0/10
 Persistent=true
 

@@ -4,17 +4,22 @@
 // Default settings lookup: `zed: open default settings`
 {
   // General
+  "agent": {
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro"
+    },
+    "model_parameters": [],
+    "play_sound_when_agent_done": true,
+  },
   "base_keymap": "VSCode",
   "vim_mode": true,
   "confirm_quit": true,
 
   // Font
-  "buffer_font_family": "Cascadia Mono",
+  "buffer_font_family": "CaskaydiaMono Nerd Font",
   "buffer_font_size": 16,
-  "buffer_font_features": {
-    "calt": false
-  },
-  "ui_font_family": "Cascadia Mono",
+  "ui_font_family": "CaskaydiaCove Nerd Font",
   "ui_font_size": 16,
 
   // Theme
@@ -99,6 +104,7 @@
 
   // Extensions
   "auto_install_extensions": {
-    "colored-zed-icons-theme": true
+    "colored-zed-icons-theme": true,
+    "git-firefly": true
   }
 }
