@@ -9,6 +9,7 @@ DEST_DIR="."
 
 ITEMS=(
   "clipse/config.json"
+  "Code/User/settings.json"
   "hypr"
   "kitty/kitty.conf" # change to full dir when theme ready
   "mpd/mpd.conf"

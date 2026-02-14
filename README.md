@@ -10,7 +10,7 @@ launcher: [tofi](https://github.com/philj56/tofi)<br><br>
 
 browser: [firefox](https://www.mozilla.org/en-US/firefox)<br>
 terminal: [kitty](https://github.com/kovidgoyal/kitty)<br>
-editor: [zed](https://zed.dev) / [neovim](https://neovim.io)<br>
+editor: [VSCode](https://code.visualstudio.com/) / [zed](https://zed.dev) / [neovim](https://neovim.io)<br>
 music: [mpd](https://www.musicpd.org/) + [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)<br>
 file manager: [yazi](https://github.com/sxyazi/yazi)<br>
 greeter: [greed](https://git.sr.ht/~kennylevinsen/greetd) + [tuigreet](https://github.com/apognu/tuigreet)
