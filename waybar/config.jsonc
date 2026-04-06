@@ -1,55 +1,215 @@
-// -*- mode: jsonc -*-
 {
-    /* General bar settings */
-    "layer": "top",  // Waybar at top layer
-    "position": "top",  // Waybar position (top|bottom|left|right)
-    //"height": 60,       // Waybar height (to be removed for auto height)
-    //"width": 1280,   // Waybar width
-    "spacing": 10,       // Gaps between modules (4px)
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "width": 0,
+    "spacing": 0,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-bottom": 0,
     "reload_style_on_change": true,
-
-    /* Include config file with modules configurations */
-    "include": [
-        "$HOME/.config/waybar/modules.jsonc"
-    ],
-
-    /* Order of modules in sections */
     "modules-left": [
-        "clock",
-        "clock#date",
         "custom/weather",
+        "custom/spacer",
+        //"clock#date",
+        "clock",
+        "custom/spacer",
         "mpris"
-        //"hyprland/window"
     ],
     "modules-center": [
         "hyprland/workspaces"
     ],
     "modules-right": [
         "custom/update",
-        "group/system",
-        "tray",
+        //"battery",
+        //"battery#bat2",
+        "network",
+        "bluetooth",
         "pulseaudio",
-        //"battery", // laptop
-        //"battery#bat2", // laptop
-        "custom/notifications"
+        "pulseaudio#mic"
     ],
-
+    /* Audio */
+    // TODO: Should be using wireplumber modules, but can't figure out the "Object with id X not found" issue.
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ],
+        "tooltip": true,
+        "tooltip-format": "{desc} | {volume}%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-middle": "kitty -e ncmpcpp",
+        "on-click-right": "kitty -e wiremix"
+    },
+    "pulseaudio#mic": {
+        "format": "{format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
+        "tooltip": true,
+        "tooltip-format": "{source_desc} | {source_volume}%",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-right": "kitty -e wiremix -v input",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%"
+    },
+    /* Bluetooth */
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-connected": "󰂱",
+        "format-disabled": "󰂲",
+        "format-off": "󰂯",
+        "format-no-controller": "󰂲",
+        "tooltip": true,
+        "tooltip-format-on": "Bluetooth ready",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias} |  {device_battery_percentage}%",
+        "tooltip-format-disabled": "Bluetooth disabled",
+        "tooltip-format-off": "Bluetooth off",
+        "tooltip-format-no-controller": "No Bluetooth controller",
+        "on-click-right": "kitty -e bluetui"
+    },
+    /* Network */
+    "network": {
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format-wifi": "{icon}",
+        "format-ethernet": "",
+        "format-linked": "",
+        "format-disconnected": "",
+        "tooltip": true,
+        "tooltip-format-wifi": "{essid} | {frequency} | {ipaddr}",
+        "tooltip-format-ethernet": "{ifname} | {ipaddr}",
+        "tooltip-format-linked": "{ifname} | No IP",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+    /* Clock */
+    // "clock": {
+    //     "format": "{:%H:%M}",
+    //     "tooltip": false
+    // },
+    "clock": {
+        "format": "{:%a %d · %H:%M}",
+        "tooltip": true,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            "format": {
+                "months": "<b>{}</b>",
+                "days": "<b>{}</b>",
+                "weeks": "<span color='#A3C185'><b>W{}</b></span>",
+                "weekdays": "<span color='#D9B863'><b>{}</b></span>",
+                "today": "<span color='#C05B4D'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode",
+            "on-click-right": "shift_reset",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    /* Hyprland */
+    "hyprland/workspaces": {
+        "active-only": true,
+        "format": "{icon}",
+        "format-icons": {
+            "empty": "", // empty, basically persitent ones
+            "default": "", // not empty, not visible or in focus
+            "visible": "", // not in focus but visible ie. other monitor
+            "active": "", // in focus
+            "urgent": ""
+        },
+        "on-scroll-up": "hyprctl dispatch workspace m+1 --quiet",
+        "on-scroll-down": "hyprctl dispatch workspace m-1 --quiet"
+    },
+    /* MPRIS */
+    "mpris": {
+        "format": "{artist} - {title}",
+        "format-paused": "{artist} - {title}",
+        "dynamic-order": [
+            "artist",
+            "title",
+            "album"
+        ],
+        "dynamic-separator": "\n",
+        "max-length": 40,
+        "tooltip": true,
+        "tooltip-format": "{dynamic}\n[{position}/{length}]",
+        "status-icons": {
+            "playing": "",
+            "paused": "",
+            "stopped": ""
+        },
+        "on-click-middle": "kitty -e ncmpcpp",
+        "on-click-right": "playerctld shift",
+        "on-scroll-up": "playerctl position 5+",
+        "on-scroll-down": "playerctl position 5-"
+    },
+    /* Custom modules */
+    // Weather
+    "custom/weather": {
+        "exec": "$HOME/.config/scripts/wttrin.sh --waybar",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 600,
+        "hide-empty-text": true,
+        "tooltip": true,
+        "on-click": "$HOME/.config/scripts/wttrin.sh --waybar"
+    },
+    // System updates
+    "custom/update": {
+        "exec": "$HOME/.config/scripts/updates.sh --waybar",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 600,
+        "hide-empty-text": true,
+        "tooltip": true,
+        "on-click": "$HOME/.config/scripts/updates.sh --waybar",
+        "on-click-right": "$HOME/.config/scripts/updates.sh --update; pkill -SIGRTMIN+8 waybar",
+        "signal": 8
+    },
+    // Spacer
+    "custom/spacer": {
+        "format": "|",
+        "tooltip": false
+    },
+    /* Unused */
     /* Groups */
-    "group/system": {
+    "group/tray": {
         "orientation": "horizontal",
         "drawer": {
             "transition-duration": 500,
-            //"children-class": "not-power",
+            "children-class": "tray-group",
             "transition-left-to-right": false,
             "click-to-reveal": false
         },
         "modules": [
             "custom/icon#expand",
-            "custom/btop",
-            "idle_inhibitor",
-            "bluetooth",
-            "network"
+            "tray"
         ]
+    },
+    /* Tray */
+    "tray": {
+        "show-passive-items": false,
+        "spacing": 10
+    },
+    /* Decorational modules */
+    // First icon in group drawer - expand
+    "custom/icon#expand": {
+        "format": "",
+        "tooltip": false
     }
 }
-

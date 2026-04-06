@@ -1,0 +1,12 @@
+[Unit]
+Description=Data Fetcher
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=6
+
+[Service]
+Type=simple
+ExecStart=%h/.config/scripts/fetch_data.sh
+Restart=on-failure
+RestartSec=10

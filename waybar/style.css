@@ -2,43 +2,51 @@
 * {
   border: none;
   border-radius: 0px;
-  font-family: "CaskaydiaCove Nerd Font";
-  font-weight: bold;
-  font-size: 13px;
-  min-height: 13px;
+  font-family: "CaskaydiaMono Nerd Font Propo";
+  font-weight: normal;
+  font-size: 15px;
+  min-height: 0px;
 }
 
 /* Bar */
 window#waybar {
-  background: rgba(40, 40, 40, 1);
-  /*background: transparent;*/
-  border-radius: 8px;
+  background: #221F1E;
+  /* background: transparent; */
+  border: 1px solid #E6DBC3;
+}
+
+/* Animations */
+@keyframes blink {
+  to {
+    color: #E6DBC3;
+  }
 }
 
 /* Tooltip */
 tooltip {
-  background: rgba(40, 40, 40, 0.9);
-  border-radius: 8px;
-  border-width: 0px;
+  background: transparent;
+  border: none;
 }
+
 tooltip label {
-  color: wheat;
+  background: rgba(40, 40, 40, 1);
+  border: 1px solid #E6DBC3;
+  color: #E6DBC3;
+  font-weight: bold;
+  padding: 10px 10px;
+  margin: 5px;
 }
 
 /* Sections */
 .modules-left,
 .modules-center,
 .modules-right {
-  background: rgba(40, 40, 40, 0.9);
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-top-left-radius: 8px;
-  border-color: wheat;
+  background: transparent;
+  border-color: #E6DBC3;
   border-style: none;
   border-width: 1px;
   padding-top: 2px;
-  padding-bottom: 2px;
+  padding-bottom: 0px;
   padding-right: 10px;
   padding-left: 10px;
 }
@@ -53,60 +61,53 @@ tooltip label {
   border-bottom-right-radius: 0px;
 }
 
-/* Modules */
+/* Common modules */
+#pulseaudio,
+#pulseaudio-mic,
 #workspaces,
 #idle_inhibitor,
 #clock,
-#backlight,
-#backlight-slider,
 #network,
 #bluetooth,
-#pulseaudio,
-#pulseaudio-slider,
-#battery,
-#cpu,
-#disk,
-#keyboard-state,
-#mode,
 #mpris,
-#language,
-#memory,
 #tray,
-#custom-separator,
-#custom-launcher,
 #custom-weather,
 #custom-update,
-#custom-btop,
-#custom-hyprsunset,
-#custom-notifications,
+#custom-spacer,
 #custom-icon {
-  color: wheat;
+  color: #E6DBC3;
   background-color: transparent;
   padding-top: 4px;
   padding-bottom: 4px;
-  padding-right: 2px;
-  padding-left: 2px;
+  padding-right: 8px;
+  padding-left: 8px;
+  min-width: 15px
 }
 
-#custom-separator {
-  padding-right: 0px;
-  padding-left: 0px;
+/* Bluetooth */
+#bluetooth.on {
+  color: #86A361;
 }
 
-/* Blinking notification icon */
-#custom-notifications.notification,
-#custom-notifications.dnd-notification,
-#custom-notifications.inhibited-notification,
-#custom-notifications.dnd-inhibited-notification {
-  animation: blink 1s infinite;
-  color: red;
+#bluetooth.connected {
+  color: #6F8FAF;
 }
 
+#bluetooth.disabled,
+#bluetooth.no-controller {
+  color: #C05B4D;
+}
+
+#bluetooth.off {
+  color: #615856;
+}
+
+/* Hyprland Workspaces */
 /* Workspace buttons */
 #workspaces button {
   box-shadow: none;
   text-shadow: none;
-  color: wheat;
+  color: #E6DBC3;
   border-radius: 8px;
   padding: 0px;
   margin-top: 0px;
@@ -115,30 +116,39 @@ tooltip label {
   margin-right: 4px;
 }
 
-#workspaces button.empty {
-  color: grey;
+/* Hovered */
+#pulseaudio:hover,
+#clock:hover,
+#network:hover,
+#bluetooth:hover,
+#mpris:hover,
+#tray:hover,
+#custom-weather:hover,
+#custom-update:hover,
+#custom-icon:hover,
+#workspaces button:hover {
+  opacity: 0.8;
+  background: transparent;
 }
 
-/* Blinking urgent workspace */
+/* Empty workspace */
+#workspaces button.empty {
+  color: #615856;
+}
+
+/* Urgent workspace */
 #workspaces button.urgent {
   color: red;
   animation: blink 1s infinite;
 }
 
-/* White hovered workspace */
-#workspaces button:hover {
-  color: #ffffe7;
-  background: inherit;
+/* MPRIS */
+#mpris.playing {
+  font-style: italic;
 }
 
+/* Tray */
 /* Tray menu separator height */
 #tray menu separator {
   min-height: 0px;
-}
-
-/* Animations */
-@keyframes blink {
-  to {
-    color: wheat;
-  }
 }

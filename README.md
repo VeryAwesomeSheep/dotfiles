@@ -5,7 +5,7 @@ distro: [Arch Linux](https://archlinux.org/)<br><br>
 compositor: [Hyprland](https://github.com/hyprwm/Hyprland)<br>
 lock screen: [hyprlock](https://github.com/hyprwm/hyprlock)<br>
 bar: [waybar](https://github.com/Alexays/Waybar)<br>
-notifications: [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter)<br>
+notifications: [Dunst](https://dunst-project.org/)<br>
 launcher: [tofi](https://github.com/philj56/tofi)<br><br>
 
 browser: [firefox](https://www.mozilla.org/en-US/firefox)<br>

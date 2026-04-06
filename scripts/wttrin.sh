@@ -1,119 +1,123 @@
 #!/bin/bash
 
-# Help message
-help() {
-    echo "Usage: $0 [option] <location>"
-    echo ""
-    echo "Options:"
-    echo "  --simple    returns basic report (default)"
-    echo "  --full      returns full report"
-    echo "  --waybar    returns full report in json for waybar"
-    echo "  --help      print this usage message"
-    echo ""
-    echo "Location:"
-    echo "  <none>      get location based on your IP"
-    echo "  New+York    example"
-    echo "  Paris       example"
-    echo ""
+CACHE_FILE="$HOME/.cache/wttrin.json"
+MAX_AGE=60 # Maximum allowed age of the cache file in minutes
+
+is_cache_valid() {
+  if [ -z "$(find "$CACHE_FILE" -mmin -"$MAX_AGE" 2>/dev/null)" ]; then
+    return 1 # Cache too old or missing
+  fi
+  if ! jq -e '.current_condition[0]' "$CACHE_FILE" >/dev/null 2>&1; then
+    return 1 # Invalid JSON
+  fi
+
+  return 0
 }
 
-# Variables
-type="simple"  # Default type
-location=""
-
-# Check for help option
-if [[ "$1" == "--help" ]]; then
-  help
-  exit 0
-fi
-
-# Handle options and location
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --simple)
-        type="simple"
-        shift
-        ;;
-    --full)
-        type="full"
-        shift
-        ;;
-    --waybar)
-        type="waybar"
-        shift
-        ;;
-    --) # End of options, treat remaining arguments as location
-        shift
-        location="$1"
-        shift
-        break
-        ;;
-    -*) # Invalid option
-        echo "Error: Invalid option '$1'." >&2
-        help
-        exit 1
-        ;;
-    *)  # Treat as location if no option is given
-        location="$1"
-        shift
-        break
-        ;;
+get_weather_icon() {
+  local code="$1"
+  case "$code" in
+    113) echo "" ;; # Sunny
+    116) echo "" ;; # PartlyCloudy
+    119) echo "" ;; # Cloudy
+    122) echo "" ;; # VeryCloudy
+    143|248|260) echo "" ;; # Fog
+    176|263|353) echo "" ;; # LightShowers
+    179|362|365|374) echo "" ;; # LightSleetShowers
+    182|185|281|284|311|314|317|350|377) echo "" ;; # LightSleet
+    200|386) echo "" ;; # ThunderyShowers
+    227|320) echo "" ;; # LightSnow
+    230|329|332|338) echo "" ;; # HeavySnow
+    266|293|296) echo "" ;; # LightRain
+    299|305|356) echo "" ;; # HeavyShowers
+    302|308|359) echo "" ;; # HeavyRain
+    323|326|368) echo "" ;; # LightSnowShowers
+    335|371|395) echo "" ;; # HeavySnowShowers
+    389) echo "" ;; # ThunderyHeavyRain
+    392) echo "" ;; # ThunderySnowShowers
+    *) echo "" ;; # Unknown
   esac
-done
+}
 
-# Request based on inputs
-case "$type" in
-    simple)
-        response=$(curl -s "wttr.in/$location?format=%l:+%c+%t+(%f)")
-        if [ "$response" == "" ]; then
-            echo "wttr.in error"
-        else
-            city=$(echo "$response" | awk '{print $1}' | cut -d ':' -f 1)
-            icon=$(echo "$response" | awk '{print $2}')
-            temperature=$(echo "$response" | awk '{print $3}')
-            feels_like=$(echo "$response" | awk '{print $4}' | cut -d '(' -f 2 | cut -d ')' -f 1) # Extract from parentheses
+case "$1" in
+  --fetch)
+  # Check if a location argument was provided
+  LOCATION=""
+  if [ -n "$2" ]; then
+    # Replace spaces with '+'
+    LOCATION="${2// /+}"
+  fi
 
-            echo "$city $icon $temperature ($feels_like)"
-        fi
-        ;;
-    full)
-        response=$(curl -s "wttr.in/$location?format=%l:+%c+%t+(%f)+%h+%w+%p+%P+%S+%s")
-        if [ "$response" == "" ]; then
-            echo "wttr.in error"
-        else
-            city=$(echo "$response" | awk '{print $1}' | cut -d ':' -f 1)
-            icon=$(echo "$response" | awk '{print $2}')
-            temperature=$(echo "$response" | awk '{print $3}')
-            feels_like=$(echo "$response" | awk '{print $4}' | cut -d '(' -f 2 | cut -d ')' -f 1) # Extract from parentheses
-            humidity=$(echo "$response" | awk '{print $5}')
-            wind=$(echo "$response" | awk '{print $6}')
-            precipitation=$(echo "$response" | awk '{print $7}')
-            pressure=$(echo "$response" | awk '{print $8}')
-            sunrise=$(echo "$response" | awk '{print $9}')
-            sunset=$(echo "$response" | awk '{print $10}')
+  # Fetch JSON from wttr.in (with location and forced metric units)
+  if curl -s "https://wttr.in/${LOCATION}?format=j1&m" > "${CACHE_FILE}.tmp"; then
+    mv "${CACHE_FILE}.tmp" "$CACHE_FILE"
+    exit 0
+  else
+    rm -f "${CACHE_FILE}.tmp"
+    exit 1
+  fi
+  ;;
 
-            echo "$city: $icon, Temperature: $temperature, Feels like: $feels_like, Humidity: $humidity, Wind: $wind, Precipitation: $precipitation, Pressure: $pressure, Sunrise: $sunrise, Sunset: $sunset"
-        fi
-        ;;
-    waybar)
-        response=$(curl -s "wttr.in/$location?format=%l:+%c+%t+(%f)+%h+%w+%p+%P+%S+%s")
-        if [ "$response" == "" ]; then
-            echo "{\"text\":\"wttr.in error\", \"tooltip\":\"No data\"}"
-        else
-            city=$(echo "$response" | awk '{print $1}' | cut -d ':' -f 1)
-            icon=$(echo "$response" | awk '{print $2}')
-            temperature=$(echo "$response" | awk '{print $3}')
-            feels_like=$(echo "$response" | awk '{print $4}' | cut -d '(' -f 2 | cut -d ')' -f 1) # Extract from parentheses
-            humidity=$(echo "$response" | awk '{print $5}')
-            wind=$(echo "$response" | awk '{print $6}')
-            precipitation=$(echo "$response" | awk '{print $7}')
-            pressure=$(echo "$response" | awk '{print $8}')
-            sunrise=$(echo "$response" | awk '{print $9}')
-            sunset=$(echo "$response" | awk '{print $10}')
+  --simple)
+    if ! is_cache_valid; then echo ""; exit 0; fi
 
-            echo "{\"text\":\"$icon $temperature ($feels_like)\",\"tooltip\":\"     Location: $city\n     Humidity: $humidity\n    Wind: $wind\n    Precipitation: $precipitation\n󰊚    Pressure: $pressure\n   Sunrise: $sunrise\n   Sunset: $sunset\"}"
-        fi
-        ;;
+    {
+    read -r code
+    read -r feels
+    } < <(jq -r '.current_condition[0] | .weatherCode, .FeelsLikeC' "$CACHE_FILE")
+
+    icon=$(get_weather_icon "$code")
+    echo "${icon} ${feels}°C"
+    ;;
+
+  --waybar)
+    if ! is_cache_valid; then echo '{"text": "", "tooltip": ""}'; exit 0; fi
+
+    {
+      read -r temp
+      read -r code
+      read -r feels
+      read -r desc
+      read -r wind_dir
+      read -r wind_speed
+      read -r precip
+      read -r humidity
+      read -r sunrise
+      read -r sunset
+    } < <(jq -r '.current_condition[0] as $current | .weather[0].astronomy[0] as $astronomy | $current.temp_C, $current.weatherCode, $current.FeelsLikeC, $current.weatherDesc[0].value, $current.winddir16Point, $current.windspeedKmph, $current.precipMM, $current.humidity, $astronomy.sunrise, $astronomy.sunset' "$CACHE_FILE")
+
+    icon=$(get_weather_icon "$code")
+
+    # Convert 12h to 24h format
+    sunrise=$(date -d "$sunrise" +%H:%M 2>/dev/null || echo "$sunrise")
+    sunset=$(date -d "$sunset" +%H:%M 2>/dev/null || echo "$sunset")
+
+    # 'c' is important here as it outputs JSON on a single line which is needed for waybar
+    jq -cn \
+      --arg text "$icon ${feels}°C" \
+      --arg icon "$icon" \
+      --arg desc "$desc" \
+      --arg temp "$temp" \
+      --arg wind_dir "$wind_dir" \
+      --arg wind_speed "$wind_speed" \
+      --arg precip "$precip" \
+      --arg humidity "$humidity" \
+      --arg sunrise "$sunrise" \
+      --arg sunset "$sunset" \
+      '{
+        "text": $text,
+        "tooltip": "<tt>\($icon)  \($desc)\n  \($temp)°C\n󱗺  \($wind_dir) - \($wind_speed) km/h\n  \($precip)mm\n  \($humidity)%\n  \($sunrise)\n  \($sunset)</tt>"
+      }'
+    ;;
+
+  --temperature)
+    if ! is_cache_valid; then echo ""; exit 0; fi
+
+    jq -r '.current_condition[0].FeelsLikeC + "°C"' "$CACHE_FILE"
+    ;;
+
+  *)
+    echo "Usage: $0 {--fetch <location>|--simple|--waybar|--temperature}"
+    exit 1
+    ;;
 esac
-
-exit 0

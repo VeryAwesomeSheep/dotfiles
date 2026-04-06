@@ -113,4 +113,5 @@
     "explorer.confirmDelete": false,
     "security.workspace.trust.untrustedFiles": "open",
     "workbench.activityBar.location": "top",
+    "workbench.colorTheme": "Dark Modern",
 }

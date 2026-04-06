@@ -1,26 +1,38 @@
 # https://github.com/philj56/tofi/blob/master/doc/config
 
 # Font
-font = CaskaydiaMono Nerd Font
-font-size = 30
+font = CaskaydiaMono Nerd Font Propo
+font-size = 12
 
 # Text style
-selection-color = #f5deb3
-selection-match-color = #ffffe7
+text-color = #E6DBC3
+selection-color = #E6DBC3
 
 # Text layout
 prompt-text = "Run: "
-num-results = 5
+num-results = 10
 result-spacing = 15
+input-color = #D9B863
+default-result-color = #C05B4D
+selection-match-color = #86A361
 
 # Window theming
-width = 100%
-height = 100%
-background-color = #282828aa
-outline-width = 0
+horizontal = true
+anchor = top
+margin-top = 10
+margin-left = 10
+margin-right = 10
+width = 0
+height = 35
+background-color = #221F1E
+outline-width = 1
+outline-color = #E6DBC3
 border-width = 0
-padding-left = 35%
-padding-top = 35%
+padding-left = 18
+padding-right = 10
+padding-top = 6
+padding-bottom = 5
 
 # Behaviour
+history = true
 terminal = kitty

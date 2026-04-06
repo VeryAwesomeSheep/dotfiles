@@ -6,20 +6,6 @@
 import re
 from typing import Any
 
-def open_and_prepare_file(filename: str) -> list[str]:
-  """
-  Opens log file and strips all empty lines.
-  """
-  try:
-    with open(filename, "r") as f:
-      lines = [line.strip() for line in f.readlines() if line.strip()]
-
-    return lines
-
-  except FileNotFoundError:
-    print(f"ERROR: File {filename} not found")
-    exit(1)
-
 def get_raw_input() -> list[str]:
   """
   Gets raw string from the user and strips all empty lines.
@@ -52,14 +38,18 @@ def extract_transactions(data: list[str]) -> dict[Any, dict[str, str]]:
   """
   Parses the data and packs it into dict.
   """
+  # remove the "BLIK Icon" string line that appears with blik payments
+  while "BLIK Icon" in data:
+    data.remove("BLIK Icon")
+
   transactions = {}
 
-  i = 1 # skip first index as it's a payment type
+  i = 0
   transaction_idx = 0
-  while i + 2 < len(data):
-    date = data[i]
-    title = data[i+1]
-    tmp_amount = data[i+2]
+  while i < len(data):
+    date = data[i+1]
+    title = data[i+2]
+    tmp_amount = data[i+4]
 
     # strip "\u2009" and currency
     match = re.search(r"^(.*?),(\d{2})", tmp_amount) # regex for amount with , and 2 decimal places
@@ -75,7 +65,7 @@ def extract_transactions(data: list[str]) -> dict[Any, dict[str, str]]:
       "amount": amount
     }
 
-    i += 4 # move to next transaction and skip the payment type
+    i += 5 # move to next transaction
     transaction_idx += 1
 
   return transactions
@@ -91,10 +81,8 @@ def print_formated_data(transactions: dict[Any, dict[str, str]], separator: str)
   print(f"\nFound {len(transactions)} transactions\n")
 
 if __name__ == "__main__":
-  # FILE = "transaction_log.txt"
   SEPARATOR = ";"
 
-  # data = open_and_prepare_file(FILE)
   data = get_raw_input()
   find_first_date(data)
   transactions = extract_transactions(data)
