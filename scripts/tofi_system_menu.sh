@@ -2,6 +2,7 @@
 
 # Can be customized to whatever is needed. <displayed text>#<command>
 menu=$(cat <<EOF
+btop#kitty -e btop
 Sound#kitty -e wiremix
 Bluetooth#kitty -e bluetui
 EOF

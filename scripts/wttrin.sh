@@ -71,7 +71,7 @@ case "$1" in
     ;;
 
   --waybar)
-    if ! is_cache_valid; then echo '{"text": "", "tooltip": ""}'; exit 0; fi
+    if ! is_cache_valid; then echo '{"text": "󰼯 --°C", "tooltip": "No data available"}'; exit 0; fi
 
     {
       read -r temp

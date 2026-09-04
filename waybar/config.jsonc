@@ -12,7 +12,6 @@
     "modules-left": [
         "custom/weather",
         "custom/spacer",
-        //"clock#date",
         "clock",
         "custom/spacer",
         "mpris"
@@ -22,8 +21,6 @@
     ],
     "modules-right": [
         "custom/update",
-        //"battery",
-        //"battery#bat2",
         "network",
         "bluetooth",
         "pulseaudio",
@@ -92,11 +89,7 @@
         "tooltip-format-linked": "{ifname} | No IP",
         "tooltip-format-disconnected": "Disconnected"
     },
-    /* Clock */
-    // "clock": {
-    //     "format": "{:%H:%M}",
-    //     "tooltip": false
-    // },
+    /* Clock and calendar */
     "clock": {
         "format": "{:%a %d · %H:%M}",
         "tooltip": true,
@@ -132,8 +125,8 @@
             "active": "", // in focus
             "urgent": ""
         },
-        "on-scroll-up": "hyprctl dispatch workspace m+1 --quiet",
-        "on-scroll-down": "hyprctl dispatch workspace m-1 --quiet"
+        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"m-1\" })' --quiet",
+        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"m+1\" })' --quiet"
     },
     /* MPRIS */
     "mpris": {

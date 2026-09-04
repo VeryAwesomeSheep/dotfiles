@@ -1,0 +1,68 @@
+{
+  // Workbench & window
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "Dark Modern",
+  "workbench.layoutControl.enabled": false,
+  "window.newWindowProfile": "Default",
+  "window.commandCenter": false,
+  // AI
+  "chat.disableAIFeatures": true,
+  // Editor
+  "editor.fontFamily": "CaskaydiaMono Nerd Font, monospace",
+  "editor.fontSize": 15,
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize",
+  "editor.detectIndentation": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.lineNumbers": "on",
+  "editor.stickyScroll.enabled": true,
+  "editor.insertSpaces": true,
+  // Diffeditor
+  "diffEditor.ignoreTrimWhitespace": false,
+  // Files
+  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespaceInRegexAndStrings": true,
+  // Git
+  "git.blame.editorDecoration.enabled": true,
+  "git.blame.editorDecoration.template": "${authorName} (${authorDateAgo})",
+  "git.blame.statusBarItem.enabled": true,
+  "git.blame.statusBarItem.template": "${subject} - ${authorName} (${authorDateAgo})",
+  // Telemetry
+  "telemetry.telemetryLevel": "error",
+  // Languages
+  "[c][cpp]": {},
+  "[go]": {},
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false,
+  },
+  // Extensions
+  // C/Cpp
+  "C_Cpp.intelliSenseEngine": "disabled",
+  // Go
+  "gopls": {
+    "ui.semanticTokens": true,
+  },
+  "go.formatTool": "gofmt",
+  "go.toolsManagement.autoUpdate": true,
+  // Python
+  "python.analysis.typeCheckingMode": "standard",
+  "ruff.configuration": {
+    "indent-width": 2
+  },
+  // Others
+  // Hyprland LSP for Lua
+  "Lua.workspace.library": [
+    "/usr/share/hypr/stubs"
+  ],
+}

@@ -1,16 +1,15 @@
 # dotfiles
 
-distro: [Arch Linux](https://archlinux.org/)<br><br>
+distro: [Arch Linux](https://archlinux.org/)
 
-compositor: [Hyprland](https://github.com/hyprwm/Hyprland)<br>
-lock screen: [hyprlock](https://github.com/hyprwm/hyprlock)<br>
-bar: [waybar](https://github.com/Alexays/Waybar)<br>
-notifications: [Dunst](https://dunst-project.org/)<br>
-launcher: [tofi](https://github.com/philj56/tofi)<br><br>
-
-browser: [firefox](https://www.mozilla.org/en-US/firefox)<br>
-terminal: [kitty](https://github.com/kovidgoyal/kitty)<br>
-editor: [VSCode](https://code.visualstudio.com/) / [zed](https://zed.dev) / [neovim](https://neovim.io)<br>
-music: [mpd](https://www.musicpd.org/) + [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)<br>
-file manager: [yazi](https://github.com/sxyazi/yazi)<br>
+compositor: [Hyprland](https://github.com/hyprwm/Hyprland)  
+lock screen: [hyprlock](https://github.com/hyprwm/hyprlock)  
+bar: [waybar](https://github.com/Alexays/Waybar)  
+notifications: [Dunst](https://dunst-project.org/)  
+launcher: [tofi](https://github.com/philj56/tofi)  
+browser: [firefox](https://www.mozilla.org/en-US/firefox)  
+terminal: [kitty](https://github.com/kovidgoyal/kitty)  
+editor: [Code - OSS](https://github.com/microsoft/vscode)  
+music: [mpd](https://www.musicpd.org/) + [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp)  
+file manager: [yazi](https://github.com/sxyazi/yazi)  
 greeter: [greed](https://git.sr.ht/~kennylevinsen/greetd) + [tuigreet](https://github.com/apognu/tuigreet)

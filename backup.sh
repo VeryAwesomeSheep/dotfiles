@@ -9,7 +9,7 @@ DEST_DIR="."
 
 ITEMS=(
   "clipse/config.json"
-  "Code/User/settings.json"
+  "Code - OSS/User/settings.json"
   "dunst"
   "hypr"
   "icons"

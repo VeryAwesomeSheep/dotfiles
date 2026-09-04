@@ -10,15 +10,15 @@
 
 /* Bar */
 window#waybar {
-  background: #221F1E;
+  background: #221f1e;
   /* background: transparent; */
-  border: 1px solid #E6DBC3;
+  border: 1px solid #e6dbc3;
 }
 
 /* Animations */
 @keyframes blink {
   to {
-    color: #E6DBC3;
+    color: #e6dbc3;
   }
 }
 
@@ -30,8 +30,8 @@ tooltip {
 
 tooltip label {
   background: rgba(40, 40, 40, 1);
-  border: 1px solid #E6DBC3;
-  color: #E6DBC3;
+  border: 1px solid #e6dbc3;
+  color: #e6dbc3;
   font-weight: bold;
   padding: 10px 10px;
   margin: 5px;
@@ -42,7 +42,7 @@ tooltip label {
 .modules-center,
 .modules-right {
   background: transparent;
-  border-color: #E6DBC3;
+  border-color: #e6dbc3;
   border-style: none;
   border-width: 1px;
   padding-top: 2px;
@@ -75,27 +75,27 @@ tooltip label {
 #custom-update,
 #custom-spacer,
 #custom-icon {
-  color: #E6DBC3;
+  color: #e6dbc3;
   background-color: transparent;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-right: 8px;
   padding-left: 8px;
-  min-width: 15px
+  min-width: 15px;
 }
 
 /* Bluetooth */
 #bluetooth.on {
-  color: #86A361;
+  color: #86a361;
 }
 
 #bluetooth.connected {
-  color: #6F8FAF;
+  color: #6f8faf;
 }
 
 #bluetooth.disabled,
 #bluetooth.no-controller {
-  color: #C05B4D;
+  color: #c05b4d;
 }
 
 #bluetooth.off {
@@ -107,7 +107,7 @@ tooltip label {
 #workspaces button {
   box-shadow: none;
   text-shadow: none;
-  color: #E6DBC3;
+  color: #e6dbc3;
   border-radius: 8px;
   padding: 0px;
   margin-top: 0px;
